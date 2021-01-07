@@ -87,12 +87,12 @@ def checkFileValidity(fileObject, request):
         if int(file_size) <= app.config["MAX_IMAGE_FILESIZE"]:
             isValid["size"] = False
             errorMesssage.append(
-                "File size exceeded maximum size of 500,000 bytes")
+                "File size exceeded maximum size of 16MB")
 
     return isValid, errorMesssage
 
-def response(status_code, message):
-    return {"status_code": status_code, "details": message}
+def response(statusCode, message):
+    return {"status_code": statusCode, "information": message}
 
 
 if __name__ == "__main__":
