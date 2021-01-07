@@ -43,7 +43,7 @@ class ColoredFormatter(logging.Formatter):
         return logging.Formatter.format(self, record)
 
 
-class ColoredLogger(logging.Logger):
+class CustomLogger(logging.Logger):
     FORMAT = "[$BOLD%(name)-20s$RESET][%(levelname)-18s]  %(message)s ($BOLD%(filename)s$RESET:%(lineno)d)"
     COLOR_FORMAT = formatter_message(FORMAT, True)
 
@@ -59,4 +59,4 @@ class ColoredLogger(logging.Logger):
         return
 
 
-logging.setLoggerClass(ColoredLogger)
+logging.setLoggerClass(CustomLogger)

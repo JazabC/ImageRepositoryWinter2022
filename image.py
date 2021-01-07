@@ -6,15 +6,16 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
+#fiero - A modern and simplest convenient ORM package in Python
 from fireo.models import Model
 from fireo import fields
 from google.cloud import storage
 
-from logger import ColoredLogger
+from logger import CustomLogger
 
 # Use the application default credentials
 CLOUD_STORAGE_BUCKET = environ.get("CLOUD_STORAGE_BUCKET")
-storage_client = storage.Client()
+storageClient = storage.Client()
 
 cred = credentials.ApplicationDefault()
 firebase_admin.initialize_app(cred, {"projectId": environ.get("PROJECT_ID"), })
@@ -29,17 +30,19 @@ class Picture(Model):
     imageId = fields.TextField()
     dateAdded = fields.DateTime()
     fileName = fields.TextField()
+    productNumber = fields.TextField()
 
-    def __init__(self, imageId="", fileName="", blobName="", userId=""):
+    def __init__(self, imageId="", fileName="", blobName="", userId="", productNumber=""):
         self.imageId = imageId
         self.dateAdded = datetime.datetime.now()
         self.fileName = fileName
         self.blobName = blobName
         self.userId = userId
+        self.productNumber = productNumber
 
     def uploadImage(self, imageObject, userId):
         try:
-            bucket = storage_client.get_bucket(CLOUD_STORAGE_BUCKET)
+            bucket = storageClient.get_bucket(CLOUD_STORAGE_BUCKET)
             blob = bucket.blob(userId + "_" + self.fileName)
             blob.upload_from_string(
                 imageObject.read(), content_type=imageObject.content_type
@@ -61,7 +64,7 @@ class Picture(Model):
 
     def deleteImage(self, imageId, userId):
         image = db.collection("ImagesCollection").document(imageId)
-        bucket = storage_client.get_bucket(CLOUD_STORAGE_BUCKET)
+        bucket = storageClient.get_bucket(CLOUD_STORAGE_BUCKET)
         dictionaryOfImages = image.get().to_dict()
 
         # Check permissions
