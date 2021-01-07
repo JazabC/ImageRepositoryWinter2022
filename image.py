@@ -11,7 +11,7 @@ from fireo.models import Model
 from fireo import fields
 from google.cloud import storage
 
-from debugging.logger import CustomLogger
+from debuggingTools.logger import CustomLogger
 
 # Use the application default credentials
 CLOUD_STORAGE_BUCKET = environ.get("CLOUD_STORAGE_BUCKET")
@@ -24,7 +24,7 @@ logger = logging.getLogger("logger")
 db = firestore.client()
 
 
-class Picture(Model):
+class ImageObject(Model):
     blobName = fields.TextField()
     userId = fields.TextField()
     imageId = fields.TextField()
@@ -100,5 +100,5 @@ class Picture(Model):
                     logger.debug("Deleted {} images".format(count))
             return True
         except Exception as e:
-            logger.error("Bulk-Delete Exception: {}".format(str(e)))
+            logger.error("Exception: {}".format(str(e)))
             return False

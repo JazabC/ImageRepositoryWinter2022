@@ -6,7 +6,7 @@ from http import HTTPStatus
 import uuid
 
 from google.cloud import storage
-from image import Picture
+from image import ImageObject
 
 CLOUD_STORAGE_BUCKET = environ.get("CLOUD_STORAGE_BUCKET")
 
@@ -27,7 +27,7 @@ def uploadImage():
             if False in isValidImage.values():
                 resp = response(HTTPStatus.BAD_REQUEST, errorMesssage[0])
                 return jsonify(resp), HTTPStatus.BAD_REQUEST
-            image = Picture(str(uuid.uuid4()), fileObject.filename)
+            image = ImageObject(str(uuid.uuid4()), fileObject.filename)
             uploaded = image.uploadImage(fileObject, userId)
     if uploaded:
         resp = response(
@@ -43,14 +43,14 @@ def uploadImage():
         return jsonify(resp), HTTPStatus.NO_CONTENT
 
 
-@app.route("/delete", methods=["DELETE"])
+@app.route("/delete", methods=["POST"])
 def deleteImage():
     userId = request.form.get("userId")
     if request.form.get("imageId"):
         fileName = request.form.get("imageId")
-        deleted = Picture().deleteImage(fileName, userId)
+        deleted = ImageObject().deleteImage(fileName, userId)
     elif request.args.get("bulk"):
-        deleted = Picture().bulkDelete(userId)
+        deleted = ImageObject().bulkDelete(userId)
     else:
         resp = response(
             HTTPStatus.BAD_REQUEST,
