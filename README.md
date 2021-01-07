@@ -4,7 +4,10 @@ Created this Image Repository for my Shopify Developer Intern Application!
 
 ## Installation
 
-Coming Soon
+```bash
+pipenv shell 
+pipenv sync 
+```
 
 ## Usage
 
