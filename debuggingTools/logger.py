@@ -40,7 +40,6 @@ class ColoredFormatter(logging.Formatter):
                 COLOR_SEQ % (30 + COLORS[levelname]) + levelname + RESET_SEQ
             )
             record.levelname = levelname_color
-            
         return logging.Formatter.format(self, record)
 
 
