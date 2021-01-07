@@ -9,7 +9,6 @@ from google.cloud import storage
 from image import Picture
 
 CLOUD_STORAGE_BUCKET = environ.get("CLOUD_STORAGE_BUCKET")
-storage_client = storage.Client()
 
 app = Flask(__name__)
 app.config["MAX_IMAGE_FILESIZE"] = 16 * 1024 * 1024  # 16 MB
@@ -24,9 +23,9 @@ def uploadImage():
     if request.files.getlist("images"):
         files = request.files.getlist("images")
         for fileObject in files:
-            isValidImage, error_msg = checkFileValidity(fileObject, request)
+            isValidImage, errorMesssage = checkFileValidity(fileObject, request)
             if False in isValidImage.values():
-                resp = response(HTTPStatus.BAD_REQUEST, error_msg[0])
+                resp = response(HTTPStatus.BAD_REQUEST, errorMesssage[0])
                 return jsonify(resp), HTTPStatus.BAD_REQUEST
             image = Picture(str(uuid.uuid4()), fileObject.filename)
             uploaded = image.uploadImage(fileObject, userId)
@@ -68,32 +67,29 @@ def deleteImage():
 
 
 def checkFileValidity(fileObject, request):
-    # Private helper function to validate file type, file name and file size
     isValid = {"name": True, "type": True, "size": True}
-    error_msg = []
+    errorMesssage = []
     ext = fileObject.filename.rsplit(".", 1)[1]
 
-    # File Name Check
+
     if fileObject.filename == "" or "." not in fileObject.filename:
         isValid["valid_name"] = False
-        error_msg.append("File name not valid")
-        return isValid, error_msg
+        errorMesssage.append("File name not valid")
+        return isValid, errorMessage
 
-    # File Type Check (only images/gifs are allowed)
     if ext.upper() not in app.config["ALLOWED_IMAGE_TYPE"]:
         isValid["type"] = False
-        error_msg.append("File type not allowed")
-        return isValid, error_msg
+        errorMesssage.append("File type not allowed")
+        return isValid, errorMessage
 
-    # File Size Check, if size exceeds, do not upload
     if "file_size" in request.cookies:
         file_size = request.cookies["file_size"]
         if int(file_size) <= app.config["MAX_IMAGE_FILESIZE"]:
             isValid["size"] = False
-            error_msg.append(
+            errorMesssage.append(
                 "File size exceeded maximum size of 500,000 bytes")
 
-    return isValid, error_msg
+    return isValid, errorMesssage
 
 def response(status_code, message):
     return {"status_code": status_code, "details": message}
@@ -103,4 +99,4 @@ if __name__ == "__main__":
     # This is used when running locally. Gunicorn is used to run the
     # application on Google App Engine. See entrypoint in app.yaml.
     logger.info("Running App on http://localhost:8080")
-    app.run(host="127.0.0.1", port=8080, debug=True)
+    app.run(host="127.0.0.1", port=8080, debug=False)

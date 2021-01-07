@@ -11,7 +11,7 @@ from fireo.models import Model
 from fireo import fields
 from google.cloud import storage
 
-from logger import CustomLogger
+from debugging.logger import CustomLogger
 
 # Use the application default credentials
 CLOUD_STORAGE_BUCKET = environ.get("CLOUD_STORAGE_BUCKET")
