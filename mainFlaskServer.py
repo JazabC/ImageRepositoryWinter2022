@@ -7,7 +7,7 @@ import uuid
 
 from google.cloud import storage
 from image import Picture
-from response import response
+# from response import response
 
 CLOUD_STORAGE_BUCKET = environ.get("CLOUD_STORAGE_BUCKET")
 storage_client = storage.Client()
@@ -96,8 +96,8 @@ def checkFileValidity(fileObject, request):
 
     return is_valid, error_msg
 
-# def response(status_code, message):
-#     return {"status_code": status_code, "details": message}
+def response(status_code, message):
+    return {"status_code": status_code, "details": message}
 
 
 if __name__ == "__main__":
