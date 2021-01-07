@@ -11,9 +11,11 @@ pipenv sync
 
 ## Usage
 
-Coming
+```bash
+python mainFlaskServer.py
+```
 
-## Feedback
+## How I Made it
 
 
 ## License
