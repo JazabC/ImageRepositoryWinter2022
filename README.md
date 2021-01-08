@@ -6,7 +6,7 @@ Created this Image Repository for my Shopify Developer Intern Application!
 
 ```bash
 To get pipenv: pip install pipenv
-pipenv shell -> Spawns a virtual environment
+pipenv shell # Spawns a virtual environment
 pipenv sync -> Installs all dependencies 
 ```
 
