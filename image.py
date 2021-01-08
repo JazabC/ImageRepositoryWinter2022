@@ -31,14 +31,16 @@ class ImageObject(Model):
     dateAdded = fields.DateTime()
     fileName = fields.TextField()
     productNumber = fields.TextField()
+    productPrice = fields.NumberField()
 
-    def __init__(self, imageId="", fileName="", blobName="", userId="", productNumber=""):
+    def __init__(self, imageId="", fileName="", productPrice=0, blobName="", userId="", productNumber=""):
         self.imageId = imageId
         self.dateAdded = datetime.datetime.now()
         self.fileName = fileName
         self.blobName = blobName
         self.userId = userId
         self.productNumber = productNumber
+        self.productPrice = productPrice
 
     def uploadImage(self, imageObject, userId):
         try:
@@ -50,9 +52,9 @@ class ImageObject(Model):
             self.blobName = blob.name
             self.userId = userId
             logger.info("Uploaded image to Google Cloud")
-            db.collection("Images").document(self.imageId).set(self.__dict__)
+            db.collection("ImagesCollection").document(self.imageId).set(self.__dict__)
             logger.info(
-                "Successfully stored document with image_id: {} in Firestore".format(
+                "Stored image in Firestore with (imageId): {} ".format(
                     # Store image ID
                     self.imageId
                 )
@@ -68,11 +70,11 @@ class ImageObject(Model):
         dictionaryOfImages = image.get().to_dict()
 
         # Check permissions
-        if dictionaryOfImages["user_id"] != user_id:
+        if dictionaryOfImages["userId"] != userId:
             logger.error("This action is not allowed for the current user")
             return False
         try:
-            bucket.delete_blob(image_dict["blobName"])
+            bucket.delete_blob(dictionaryOfImages["blobName"])
             logger.debug("Deleted Blob: {}".format(
                 dictionaryOfImages["blobName"]))
             image.delete()
@@ -82,22 +84,25 @@ class ImageObject(Model):
                 )
             )
             return True
+
         except Exception as e:
             logger.debug(str(e))
-            logger.error("Cannot find blob in the bucket")
+            logger.error("Object not found in bucket")
             return False
 
     def bulkDelete(self, userId):
-        images = db.collection("Images").stream()
-        count = 0
+        images = db.collection("ImagesCollection").stream()
+        imagesDeleted = 0
         try:
             for image in images:
                 isDeleted = self.deleteImage(image.get("imageId"), userId)
                 if isDeleted:
-                    db.collection("Images").document(
+                    db.collection("ImagesCollection").document(
                         image.get("imageId")).delete()
-                    count += 1
-                    logger.debug("Deleted {} images".format(count))
+                    imagesDeleted += 1
+                    logger.debug("Deleted {} images".format(imagesDeleted))
+                else:
+                    return False
             return True
         except Exception as e:
             logger.error("Exception: {}".format(str(e)))
