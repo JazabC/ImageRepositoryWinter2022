@@ -15,6 +15,13 @@ pipenv sync # Installs all dependencies
 ```bash
 python mainFlaskServer.py 
 ```
+## How It's Made 
+
+Used Flask to create a basic server endpoint
+Utilized Firebase for storage 
+Fireo as ORM package for Python, specifically for Firebase
+
+Will add soon
 ## Usage For Payment Server
 
 ```bash
@@ -22,9 +29,7 @@ bundle install # Installs all gems
 ruby server.rb
 ```
 
-## How I Made it
 
-Will add soon
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
