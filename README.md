@@ -15,18 +15,26 @@ pipenv sync # Installs all dependencies
 ```bash
 python mainFlaskServer.py 
 ```
-## How It's Made 
 
+## How It's Made 
+```
 Used Flask to create a basic server endpoint
 Utilized Firebase for storage 
 Fireo as ORM package for Python, specifically for Firebase
+```
 
-Will add soon
 ## Usage For Payment Server
 
 ```bash
 bundle install # Installs all gems
 ruby server.rb
+```
+
+## How It's Made 
+```
+Used Ruby Sinatra (DSL for quickly creating web applications in Ruby with minimal effort)
+Implemented logic for Stripe API (Payment handling)
+Used PaymentIntent method for setting up payments 
 ```
 
 
