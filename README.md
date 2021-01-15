@@ -26,7 +26,8 @@ Fireo as ORM package for Python, specifically for Firebase
 ## Usage For Payment Server 💸
 
 ```bash
-Run Following Commands Within paymentApi Directory
+Run following commands within paymentApi directory
+
 bundle install # Installs all gems
 ruby server.rb 
 ```
