@@ -3,6 +3,7 @@
 Created this Image Repository for my Shopify Developer Intern Application!
 `:camera:`
 
+ `:grinning:`
 ## Installation
 
 ```bash
