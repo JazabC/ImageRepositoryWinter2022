@@ -42,7 +42,7 @@ Used PaymentIntent method for setting up payments
 
 ## Next Steps 💡
 
-![Alt Text](https://media.giphy.com/media/26gssZOCTkQsRiDK0/giphy.gif)
+![Alt Text](https://media.giphy.com/media/zSAXyipHKtoZ2/source.gif)
 
 
 
