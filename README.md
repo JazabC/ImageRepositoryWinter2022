@@ -1,9 +1,8 @@
-# ImageRepositorySpring2021
+# ImageRepositorySpring2021 📸
 
-Created this Image Repository for my Shopify Developer Intern Application!
-`:camera:`
+Created this Image Repository for my Shopify Developer Intern Application! 🗳
 
-## Installation
+## Installation 💻
 
 ```bash
 pip install pipenv # To install pipenv 
@@ -11,7 +10,7 @@ pipenv shell # Spawns a virtual environment
 pipenv sync # Installs all dependencies 
 ```
 
-## Usage For Image Uploading/Deleting Server
+## Usage For Image Uploading/Deleting Server 
 
 ```bash
 python mainFlaskServer.py 
@@ -24,7 +23,7 @@ Utilized Firebase for storage
 Fireo as ORM package for Python, specifically for Firebase
 ```
 
-## Usage For Payment Server
+## Usage For Payment Server 💸
 
 ```bash
 bundle install # Installs all gems
