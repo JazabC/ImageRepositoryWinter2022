@@ -27,7 +27,7 @@ Fireo as ORM package for Python, specifically for Firebase
 
 ```bash
 bundle install # Installs all gems
-ruby server.rb
+ruby server.rb 
 ```
 
 ## How It's Made 
