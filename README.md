@@ -42,8 +42,8 @@ Used PaymentIntent method for setting up payments
 
 ## Next Steps 💡
 
-* Bul
-* Bullet list
+* Reduce complexity of certain methods
+* Finish payment server 
 
 
 
