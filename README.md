@@ -42,7 +42,8 @@ Used PaymentIntent method for setting up payments
 
 ## Next Steps 💡
 
-![Alt Text](https://media.giphy.com/media/zSAXyipHKtoZ2/source.gif)
+* Bul
+* Bullet list
 
 
 
