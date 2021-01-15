@@ -1,7 +1,9 @@
 # ImageRepositorySpring2021
 
 Created this Image Repository for my Shopify Developer Intern Application!
-`bash:camera:`
+```bash
+:camera:
+```
 
 ## Installation
 
