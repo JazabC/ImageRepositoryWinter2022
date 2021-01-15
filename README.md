@@ -32,12 +32,18 @@ ruby server.rb
 ```
 
 ## How It's Made 
+
+* Payment Server is not stable yet, included only for demonstrate purposes *
 ```
 Used Ruby Sinatra (DSL for quickly creating web applications in Ruby with minimal effort)
 Implemented logic for Stripe API (Payment handling)
 Used PaymentIntent method for setting up payments 
-* Payment Server is not stable yet but I wanted to include it to demonstrate the progress *
 ```
+
+## Next Steps 💡
+
+![Alt Text](https://media.giphy.com/media/26gssZOCTkQsRiDK0/giphy.gif)
+
 
 
 
