@@ -16,7 +16,7 @@ pipenv sync # Installs all dependencies
 python mainFlaskServer.py 
 ```
 
-## How It's Made 
+  ## How It's Made 
 ```
 Used Flask to create a basic server endpoint
 Utilized Firebase for storage 
@@ -31,7 +31,7 @@ bundle install # Installs all gems
 ruby server.rb 
 ```
 
-## How It's Made 
+  ## How It's Made 
 
 * Payment Server is not stable yet, included only for demonstrate purposes *
 ```
