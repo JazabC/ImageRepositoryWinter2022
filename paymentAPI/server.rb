@@ -1,3 +1,4 @@
+# Payment server code
 require "google/cloud/firestore"
 require 'sinatra'
 require 'stripe'
