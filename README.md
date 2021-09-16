@@ -1,4 +1,4 @@
-# ImageRepositorySpring2021 📸
+# ImageRepositoryWinter2022 📸
 
 Created this Image Repository for my Shopify Developer Intern Application! 🗳
 
